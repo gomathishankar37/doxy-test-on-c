@@ -4,6 +4,7 @@
  */
 
 #include <stdio.h>
+
 /**
  * @brief Prints a greeting message.
  * 
