@@ -13,6 +13,15 @@ void print_greeting(const char *name) {
     printf("Hello, %s!\n", name);
 }
 
+/**
+ * @brief Prints a greeting message 2
+ * 
+ * @param name The name to include in the greeting 2.
+ */
+void print_greeting2(const char *name) {
+    printf("Hi, %s!\n", name);
+}
+
 int main() {
     print_greeting("World");
     return 0;
