@@ -8,7 +8,7 @@ on:
 jobs:
   generate-docs:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -18,26 +18,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y doxygen
 
-      - name: Print Doxyfile for Verification
-        run: cat Doxyfile
-
-      - name: List Initial Directory Structure
-        run: ls -R
-
       - name: Generate Documentation
         run: doxygen Doxyfile
 
       - name: List Directory Structure After Doxygen
-        run: ls -R
-
-      - name: Debug markdown generation
         run: |
-          echo "Checking the contents of the docs/md directory"
-          if [ -d "docs/md" ]; then
-            ls -l docs/md
-          else
-            echo "docs/md directory does not exist"
-          fi
+          echo "Listing directory structure after generating documentation:"
+          ls -R docs
 
       - name: Update README.md with Documentation
         run: |
@@ -48,16 +35,16 @@ jobs:
           if [ -d "docs/md" ]; then
             for file in docs/md/*.md; do
               if [ -f "$file" ]; then
-                  cat "$file" >> README.md
-              else
-                  echo "No markdown files found in docs/md"
+                cat "$file" >> README.md
               fi
             done
+          else
+            echo "docs/md directory does not exist - no documentation files found."
           fi
 
       - name: Cleanup generated Markdown files
         run: |
-          # Remove the generated Markdown files and directories
+          # Remove the generated Markdown files and directory
           rm -rf docs/md
 
       - name: Commit and Push updated README.md
