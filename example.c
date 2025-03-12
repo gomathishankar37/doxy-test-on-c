@@ -31,6 +31,15 @@ void print_greeting3(const char *name) {
     printf("Hi, %s!\n", name);
 }
 
+/**
+ * @brief Prints a greeting message 4
+ * 
+ * @param name The name to include in the greeting 4.
+ */
+void print_greeting4(const char *name) {
+    printf("Hi, %s!\n", name);
+}
+
 int main() {
     print_greeting("World");
     return 0;
