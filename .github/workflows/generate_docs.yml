@@ -26,12 +26,14 @@ jobs:
           echo "# API Documentation" > README.md
           echo "See [API Documentation](docs/html/index.html) for details." >> README.md
 
+      - name: Check if TOKEN is valid
+        run: echo "${{ secrets.GH_TOKEN }}"
+
       - name: Commit Documentation
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
           git add .
           git commit -m "Automated documentation update"
           git push origin main
-
