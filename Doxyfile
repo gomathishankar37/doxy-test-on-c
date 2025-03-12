@@ -1,36 +1,21 @@
 # Doxyfile 1.9.2
 
-# Project-related configuration options
 PROJECT_NAME           = "MyProject"
-PROJECT_NUMBER         = "1.0"
-PROJECT_BRIEF          = "My Project Description"
-
 OUTPUT_DIRECTORY       = docs
 CREATE_SUBDIRS         = YES
-OUTPUT_LANGUAGE        = English
-BRIEF_MEMBER_DESC      = YES
-FULL_PATH_NAMES        = YES
-TAB_SIZE               = 4
-OPTIMIZE_OUTPUT_FOR_C  = YES
+OPTIMIZE_OUTPUT_FOR_C  = NO
 
-WARN_IF_UNDOCUMENTED   = YES
 INPUT                  = src
 RECURSIVE              = YES
 
-# Markdown configuration options
 GENERATE_MD            = YES
-USE_MDFILE_AS_MAINPAGE = NO
-
-# Directories configuration for Markdown
+CREATE_SUBDIRS         = YES
+OUTPUT_DIRECTORY       = docs
 MARKDOWN_OUTPUT        = md
 EXTENSION_MAPPING      = md=markdown
 
-# Disable other documentation formats
 GENERATE_HTML          = NO
 GENERATE_LATEX         = NO
 GENERATE_RTF           = NO
 GENERATE_MAN           = NO
 GENERATE_XML           = NO
-
-# Additional options
-MARKDOWN_SUPPORT       = YES
