@@ -15,25 +15,29 @@ jobs:
       - name: Install Doxygen
         run: |
           sudo apt-get update
-          sudo apt-get install doxygen
+          sudo apt-get install -y doxygen
 
       - name: Generate Documentation
         run: |
           doxygen Doxyfile
 
-      - name: Update README.md
+      - name: Deploy Documentation to GitHub Pages
         run: |
-          echo "# API Documentation" > README.md
-          echo "See [API Documentation](docs/html/index.html) for details." >> README.md
+          # Move generated HTML files to the docs/html directory, creating it if necessary
+          mkdir -p docs/html
+          mv html/* docs/html/
 
-      - name: Check if TOKEN is valid
-        run: echo "${{ secrets.GH_TOKEN }}"
-
-      - name: Commit Documentation
-        run: |
+          # Configure git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
-          git add .
-          git commit -m "Automated documentation update"
-          git push origin main
+
+          # Add the generated documentation
+          git add docs/html
+
+          # Commit the changes only if there are changes to commit
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Update documentation"
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi
