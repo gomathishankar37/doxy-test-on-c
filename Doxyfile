@@ -1,21 +1,31 @@
 # Doxyfile 1.9.2
 
+# Project-related configuration options
 PROJECT_NAME           = "MyProject"
+PROJECT_NUMBER         = "1.0"
+PROJECT_BRIEF          = "My Project Description"
+
+# Define the output directory for documentation
 OUTPUT_DIRECTORY       = docs
 CREATE_SUBDIRS         = YES
-OPTIMIZE_OUTPUT_FOR_C  = NO
+OUTPUT_LANGUAGE        = English
 
+# Input directory for source files (adjust as necessary)
 INPUT                  = src
 RECURSIVE              = YES
+FILE_PATTERNS          = *.h *.c *.cpp *.hpp *.md
 
+# Enable markdown generation
 GENERATE_MD            = YES
-CREATE_SUBDIRS         = YES
-OUTPUT_DIRECTORY       = docs
+MARKDOWN_SUPPORT       = YES
 MARKDOWN_OUTPUT        = md
-EXTENSION_MAPPING      = md=markdown
 
+# Disable other output formats
 GENERATE_HTML          = NO
 GENERATE_LATEX         = NO
 GENERATE_RTF           = NO
 GENERATE_MAN           = NO
 GENERATE_XML           = NO
+
+# Additional options
+OPTIMIZE_OUTPUT_FOR_C  = NO
